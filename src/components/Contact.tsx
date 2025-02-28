@@ -37,7 +37,7 @@ function Contact() {
     github: "https://github.com/gianlucamaida",
     linkedin: "https://linkedin.com/in/gianluca-maida",
     instagram: "https://www.instagram.com/g_maida28/",
-    email: "mailto:gianlucamaida28@email.com",
+    email: "mailto:gianlucamaida28@gmail.com",
   };
 
   return (
