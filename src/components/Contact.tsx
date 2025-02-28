@@ -34,10 +34,10 @@ function Contact() {
 
   // Aggiungi qui i tuoi link dei social
   const socialLinks = {
-    github: "https://github.com/tuousername",
-    linkedin: "https://linkedin.com/in/tuousername",
-    instagram: "https://instagram.com/tuousername",
-    email: "mailto:tua@email.com",
+    github: "https://github.com/gianlucamaida",
+    linkedin: "https://linkedin.com/in/gianluca-maida",
+    instagram: "https://www.instagram.com/g_maida28/",
+    email: "mailto:gianlucamaida28@email.com",
   };
 
   return (
