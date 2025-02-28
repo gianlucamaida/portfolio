@@ -1,52 +1,43 @@
-import React, { useRef, useState } from 'react';
-import '../assets/styles/Contact.scss';
-// import emailjs from '@emailjs/browser';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
-import TextField from '@mui/material/TextField';
+import React, { useState } from "react";
+import "../assets/styles/Contact.scss";
+import emailjs from "@emailjs/browser";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import EmailIcon from "@mui/icons-material/Email";
 
 function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-
-  const [nameError, setNameError] = useState<boolean>(false);
-  const [emailError, setEmailError] = useState<boolean>(false);
-  const [messageError, setMessageError] = useState<boolean>(false);
-
-  const form = useRef();
-
-  const sendEmail = (e: any) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
 
-    setNameError(name === '');
-    setEmailError(email === '');
-    setMessageError(message === '');
+    if (name && email && message) {
+      emailjs
+        .send("your_service_id", "your_template_id", { name, email, message }, "your_public_key")
+        .then(() => {
+          setSuccess(true);
+          setName("");
+          setEmail("");
+          setMessage("");
+        })
+        .catch((error) => {
+          console.error("Email invio fallito:", error);
+        });
+    }
+  };
 
-    /* Uncomment below if you want to enable the emailJS */
-
-    // if (name !== '' && email !== '' && message !== '') {
-    //   var templateParams = {
-    //     name: name,
-    //     email: email,
-    //     message: message
-    //   };
-
-    //   console.log(templateParams);
-    //   emailjs.send('service_id', 'template_id', templateParams, 'api_key').then(
-    //     (response) => {
-    //       console.log('SUCCESS!', response.status, response.text);
-    //     },
-    //     (error) => {
-    //       console.log('FAILED...', error);
-    //     },
-    //   );
-    //   setName('');
-    //   setEmail('');
-    //   setMessage('');
-    // }
+  // Aggiungi qui i tuoi link dei social
+  const socialLinks = {
+    github: "https://github.com/tuousername",
+    linkedin: "https://linkedin.com/in/tuousername",
+    instagram: "https://instagram.com/tuousername",
+    email: "mailto:tua@email.com",
   };
 
   return (
@@ -55,58 +46,85 @@ function Contact() {
         <div className="contact_wrapper">
           <h1>Contact Me</h1>
           <p>Got a project waiting to be realized? Let's collaborate and make it happen!</p>
-          <Box
-            ref={form}
-            component="form"
-            noValidate
-            autoComplete="off"
-            className='contact-form'
-          >
-            <div className='form-flex'>
-              <TextField
+          <form onSubmit={sendEmail} className="contact-form">
+            <div className="form-flex">
+              <input
                 required
-                id="outlined-required"
-                label="Your Name"
-                placeholder="What's your name?"
+                type="text"
+                className="name-field"
+                placeholder="Your Name"
                 value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-                error={nameError}
-                helperText={nameError ? "Please enter your name" : ""}
+                onChange={(e) => setName(e.target.value)}
               />
-              <TextField
+
+              <input
                 required
-                id="outlined-required"
-                label="Email / Phone"
-                placeholder="How can I reach you?"
+                placeholder="Email / Phone"
+                className="name-field"
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
-                error={emailError}
-                helperText={emailError ? "Please enter your email or phone number" : ""}
               />
             </div>
-            <TextField
+            <textarea
               required
               id="outlined-multiline-static"
-              label="Message"
               placeholder="Send me any inquiries or questions"
-              multiline
-              rows={10}
               className="body-form"
               value={message}
               onChange={(e) => {
                 setMessage(e.target.value);
               }}
-              error={messageError}
-              helperText={messageError ? "Please enter the message" : ""}
-            />
+            ></textarea>
             <Button variant="contained" endIcon={<SendIcon />} onClick={sendEmail}>
               Send
             </Button>
-          </Box>
+            {success && <p>Email inviata con successo! ✅</p>}
+          </form>
+
+          {/* Social Media Buttons */}
+          <div className="social-buttons">
+            <h3>Or connect with me on:</h3>
+            <div className="social-icons">
+              <Button
+                variant="contained"
+                href={socialLinks.github}
+                target="_blank"
+                startIcon={<GitHubIcon />}
+                className="social-button github"
+              >
+                GitHub
+              </Button>
+              <Button
+                variant="contained"
+                href={socialLinks.linkedin}
+                target="_blank"
+                startIcon={<LinkedInIcon />}
+                className="social-button linkedin"
+              >
+                LinkedIn
+              </Button>
+              <Button
+                variant="contained"
+                href={socialLinks.instagram}
+                target="_blank"
+                startIcon={<InstagramIcon />}
+                className="social-button instagram"
+              >
+                Instagram
+              </Button>
+              <Button
+                variant="contained"
+                href={socialLinks.email}
+                target="_blank"
+                startIcon={<EmailIcon />}
+                className="social-button email"
+              >
+                Email
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

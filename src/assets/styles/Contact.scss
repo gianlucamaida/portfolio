@@ -6,6 +6,7 @@
 
 .contact-form {
   padding-top: 20px;
+  padding-bottom: 20px;
 
   button {
     float: right;
@@ -25,7 +26,7 @@
 
 label {
   font-size: 1.2rem;
-  font-family: 'DomaineDispNar-Medium', sans-serif;
+  font-family: "DomaineDispNar-Medium", sans-serif;
 }
 
 .form-flex {
@@ -44,5 +45,102 @@ form {
 
 .body-form {
   width: 100% !important;
+  height: 150px !important;
   margin-bottom: 15px !important;
+  justify-content: flex-end;
+  align-items: flex-start !important;
+}
+
+input {
+  color: black !important;
+}
+
+.name-field {
+  display: flex;
+  gap: 15px;
+  height: 50px !important;
+  width: 100% !important;
+}
+
+/* Aggiungi questo al tuo file Contact.scss */
+/* Aggiungi questo al tuo file Contact.scss */
+
+.social-buttons {
+  margin-top: 2rem;
+  text-align: center;
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+
+    .social-button {
+      border: 2px solid transparent !important;
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Colori personalizzati per ogni bottone */
+      &.github {
+        background-color: #24292e !important;
+        color: white !important;
+        border-color: white !important;
+
+        &:hover {
+          border-color: #5000ca !important;
+          background-color: #1a1e22 !important;
+        }
+      }
+
+      &.linkedin {
+        background-color: #24292e !important;
+        color: white !important;
+        border-color: white !important;
+
+        &:hover {
+          border-color: #5000ca !important;
+          background-color: #1a1e22 !important;
+        }
+      }
+
+      &.instagram {
+        background-color: #24292e !important;
+        color: white !important;
+        border-color: white !important;
+
+        &:hover {
+          border-color: #5000ca !important;
+          background-color: #1a1e22 !important;
+        }
+      }
+
+      &.email {
+        background-color: #24292e !important;
+        color: white !important;
+        border-color: white !important;
+
+        &:hover {
+          border-color: #5000ca !important;
+          background-color: #1a1e22 !important;
+        }
+      }
+    }
+  }
+}
+
+/* Per renderlo responsive */
+@media (max-width: 768px) {
+  .social-icons {
+    flex-direction: column;
+    align-items: center;
+  }
 }
