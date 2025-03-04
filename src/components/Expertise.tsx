@@ -48,7 +48,7 @@ function Expertise() {
       </div>
       <div className="cv-download-container">
         <a
-          href="/Curriculum.pdf"
+          href="/portfolio/assets/Curriculum.pdf"
           download="Curriculum.pdf"
           target="_blank"
           rel="noopener noreferrer"
